@@ -14,13 +14,24 @@ module Kapten::Helpers
     'perl' => 'perl:latest',
   }
 
+
+  # Validate that Kapten is initalized and Docker is installed
   def self.validate_install
 
     config = Kapten::Config::get
 
+    # Make sure a config exists (Kapten has been initialized)
     unless config
       puts 'Kapten not initalized'.red
       puts 'Run "kapten init" to get started'.red
+      return false
+    end
+
+    # Make sure Docker is instsalled
+    unless Kapten::DockerApi::has_docker?
+      puts 'Kapten requires Docker'.red
+      puts 'Install and then try running command again: https://www.docker.com'.red
+      return false
     end
 
     return config
@@ -28,6 +39,7 @@ module Kapten::Helpers
   end
 
 
+  # Get Docker image by environment type
   def self.get_image(type)
 
     return Kapten::Helpers::TYPES[ type ]
@@ -35,6 +47,7 @@ module Kapten::Helpers
   end
 
 
+  # Get all available environment types
   def self.get_types
 
     return Kapten::Helpers::TYPES.keys
@@ -42,6 +55,7 @@ module Kapten::Helpers
   end
 
 
+  # Remove all traces of Kapten (stop and destory container, delete config file)
   def self.remove(name)
 
     Kapten::DockerApi::destroy( name )

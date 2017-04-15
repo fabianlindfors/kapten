@@ -3,11 +3,31 @@ require 'colorize'
 
 module Kapten::DockerApi
 
+  # Check if Docker is installed
+  def self.has_docker?
+
+    begin
+
+      version = Docker.version
+      return true if version
+
+    rescue
+
+      return false
+
+    end
+
+    return false
+
+  end
+
+
+  # Get Docker container by Kapten name
   def self.get_container(name)
 
     begin
 
-      container = Docker::Container.get(name)
+      container = Docker::Container.get('kapten_' + name)
       return container
 
     rescue
@@ -19,6 +39,7 @@ module Kapten::DockerApi
   end
 
 
+  # Get Docker image by name
   def self.get_image(image)
 
     begin
@@ -35,6 +56,7 @@ module Kapten::DockerApi
   end
 
 
+  # Start Docker container, attaches STDIN and STDOUT
   def self.start(name, image)
 
     container = Kapten::DockerApi::get_container(name)
@@ -56,7 +78,7 @@ module Kapten::DockerApi
 
       container = Docker::Container.create(
         'Image' => image,
-        'name' => name,
+        'name' => 'kapten_' + name,
         'Hostname' => name,
         'Cmd' => ['/bin/bash'],
         "OpenStdin" => true,
@@ -74,6 +96,8 @@ module Kapten::DockerApi
     puts "---------------------------------".green
     puts 'Kapten: You\'re now inside the development environment, go wild! (use "exit" to get out of here)'.green
 
+
+    # Connect to container shell with both STDIN and STDOUT
     require "io/console"
     STDIN.raw do |stdin|
       container.exec(["bash"], stdin: stdin, tty: true) do |chunk|
@@ -84,6 +108,7 @@ module Kapten::DockerApi
   end
 
 
+  # Stop running container
   def self.stop(name)
 
     container = Kapten::DockerApi::get_container(name)
@@ -100,6 +125,7 @@ module Kapten::DockerApi
   end
 
 
+  # Fully remove container
   def self.destroy(name)
 
     container = Kapten::DockerApi::get_container(name)

@@ -46,7 +46,8 @@ $ kapten info
 $ kapten destroy
 
 # Fully remove Kapten from your project.
-$ kapten remove```
+$ kapten remove
+```
 
 ## License
 Kapten is licensed under [MIT](https://github.com/Fabianlindfors/kapten/blob/master/LICENSE).

@@ -1,7 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'kapten'
-  s.version     = '0.1.0'
-  s.date        = '2017-04-15'
+  s.version     = '0.1.1'
   s.summary     = "Simple containerized development environments directly from the command line"
   s.description = ""
   s.authors     = ["Fabian Lindfors"]

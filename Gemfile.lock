@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.8.1)
+    docker-api (1.29.0)
+      excon (>= 0.38.0)
+      json
+    excon (0.50.1)
+    json (2.0.3)
+    thor (0.19.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize
+  docker-api
+  thor
+
+BUNDLED WITH
+   1.13.6

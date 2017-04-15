@@ -1,6 +1,6 @@
 # Kapten
 
-Create simple and isolated development environments from the command line. Say goodbye to dependency issues, language version management, and complicated setups.
+Create simple and containerized development environments from the command line. Say goodbye to dependency issues, language version management, and complicated setups.
 
 Supports:
 - Ruby

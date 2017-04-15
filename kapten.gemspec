@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name        = 'kapten'
   s.version     = '0.1.0'
   s.date        = '2017-04-15'
-  s.summary     = "Simple isolated development environments directly from the command line"
+  s.summary     = "Simple containerized development environments directly from the command line"
   s.description = ""
   s.authors     = ["Fabian Lindfors"]
   s.email       = 'fabian@flapplabs.se'
